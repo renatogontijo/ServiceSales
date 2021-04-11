@@ -16,7 +16,11 @@ namespace ServiceSalesProcessor.Business.Processes
         public bool ProposalCreated { get; set; }
         public bool ProposalApproved { get; set; }
         public bool ContractCreated { get; set; }
+        public bool ContractValidated { get; set; }
 
-        public bool IsCompleted => ProposalCreated && ProposalApproved && ContractCreated;
+        public bool IsCompleted => ProposalCreated
+                                && ProposalApproved
+                                && ContractCreated
+                                && ContractValidated;
     }
 }

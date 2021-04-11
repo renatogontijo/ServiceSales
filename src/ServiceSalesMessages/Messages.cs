@@ -50,6 +50,13 @@
         public string ContractId { get; init; }
     }
 
+    public record ValidateContract
+    {
+        public string ContractId { get; init; }
+
+        public string ContractClauses { get; init; }
+    }
+
     #endregion
 
     #region [ Events ]
@@ -77,6 +84,11 @@
         public string Email { get; init; }
 
         public decimal Value { get; init; }
+    }
+
+    public record ContractValidated
+    {
+        public string ContractId { get; init; }
     }
 
     #endregion

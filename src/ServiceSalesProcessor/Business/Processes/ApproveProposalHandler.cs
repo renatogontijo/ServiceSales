@@ -1,6 +1,5 @@
 using Rebus.Bus;
 using Rebus.Handlers;
-using Serilog;
 using ServiceSalesMessages;
 using System.Threading.Tasks;
 

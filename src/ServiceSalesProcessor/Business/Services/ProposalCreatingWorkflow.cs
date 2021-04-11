@@ -11,7 +11,8 @@ namespace ServiceSalesProcessor.Business.Processes
         IAmInitiatedBy<ProposalRequest>,
         IHandleMessages<ProposalCreated>,
         IHandleMessages<ProposalApproved>,
-        IHandleMessages<ContractCreated>
+        IHandleMessages<ContractCreated>,
+        IHandleMessages<ContractValidated>
     {
         private readonly IBus _bus;
 
@@ -26,6 +27,7 @@ namespace ServiceSalesProcessor.Business.Processes
             config.Correlate<ProposalCreated>(c => c.Email, d => d.CustomerEmail);
             config.Correlate<ProposalApproved>(c => c.ProposalId, d => d.ProposalId);
             config.Correlate<ContractCreated>(c => c.ProposalId, d => d.ProposalId);
+            config.Correlate<ContractValidated>(c => c.ContractId, d => d.ContractId);
         }
 
         private void TryComplete()
@@ -87,6 +89,17 @@ namespace ServiceSalesProcessor.Business.Processes
             });
 
             TryComplete();
+        }
+
+        public Task Handle(ContractValidated message)
+        {
+            Data.ContractValidated = true;
+
+            Log.Information($"ContractId {message.ContractId} validated!");
+
+            TryComplete();
+
+            return Task.CompletedTask;
         }
     }
 }

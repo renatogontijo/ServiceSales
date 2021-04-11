@@ -19,7 +19,8 @@ namespace ServiceSalesApi
                    .Logging(l => l.Console())
                    .Routing(r => r.TypeBased()
                                     .Map<ProposalRequest>("MainQueue")
-                                    .Map<ApproveProposal>("MainQueue"))
+                                    .Map<ApproveProposal>("MainQueue")
+                                    .Map<ValidateContract>("MainQueue"))
                    .Transport(t => t.UseFileSystem(baseDir, "MainQueue"))
                    .Options(t => t.SimpleRetryStrategy(errorQueueAddress: "ErrorQueue")));
         }
