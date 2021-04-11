@@ -19,6 +19,9 @@ The Business Service simulates a Proposal Creating Service with the following ch
 
 
 ## Projects
+
 [Rebus](https://github.com/rebus-org/Rebus)
+
 [Topper](https://github.com/rebus-org/Topper)
+
 [Serilog](https://github.com/serilog/serilog)
