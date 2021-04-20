@@ -73,33 +73,33 @@ namespace ServiceSalesProcessor.Business.Processes
             TryComplete();
         }
 
-        public async Task Handle(ContractCreated message)
+        public Task Handle(ContractCreated message)
         {
             Data.ContractId = message.ContractId;
             Data.ContractCreated = true;
 
             Log.Information($"ContractId -> {message.ContractId}");
 
-            await _bus.Send(new SendContractCopyByEmail()
-            {
-                ProposalId = message.ProposalId,
-                Name = Data.CustomerName,
-                Email = message.Email,
-                ContractId = message.ContractId
-            });
-
             TryComplete();
+
+            return Task.CompletedTask;
         }
 
-        public Task Handle(ContractValidated message)
+        public async Task Handle(ContractValidated message)
         {
             Data.ContractValidated = true;
 
             Log.Information($"ContractId {message.ContractId} validated!");
 
-            TryComplete();
+            await _bus.Send(new SendContractCopyByEmail()
+            {
+                ProposalId = Data.ProposalId,
+                Name = Data.CustomerName,
+                Email = Data.CustomerEmail,
+                ContractId = message.ContractId
+            });
 
-            return Task.CompletedTask;
+            TryComplete();
         }
     }
 }

@@ -16,6 +16,8 @@ namespace ServiceSalesProcessor.Business.Processes
 
         public async Task Handle(ApproveProposal message)
         {
+            // Do some stuffs
+            
             await _bus.Reply(new ProposalApproved() { ProposalId = message.ProposalId });
         }
     }

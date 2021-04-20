@@ -9,7 +9,7 @@ namespace ServiceSalesProcessor
     public class Backend : IDisposable
     {
         private readonly ServiceProvider _provider;
-        private          IBus            _bus;
+        private IBus _bus;
 
         public Backend(IConfiguration configuration)
         {

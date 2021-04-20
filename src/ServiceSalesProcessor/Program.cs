@@ -24,7 +24,7 @@ namespace ServiceSalesProcessor
 
         private static void ReadConfiguration()
         {
-            var profile       = System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            var profile = System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             var isDevelopment = profile == "Development";
 
             var builder =
